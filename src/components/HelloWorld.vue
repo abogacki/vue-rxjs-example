@@ -12,9 +12,7 @@
 
 <script>
 import { beersService } from '@/_services/beers.service.js'
-import { map, startWith, scan, debounceTime } from 'rxjs/operators'
-import { Subject, Observable } from 'rxjs'
-import debounce from 'lodash/debounce'
+import { Subject } from 'rxjs'
 
 export default {
   name: 'HelloWorld',
