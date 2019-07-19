@@ -1,22 +1,30 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <p>
-      <input type="text" />
+      <button type="text" v-stream:click="count$">+</button>
     </p>
-    <p>Results:</p>
+    <p>{{count}}</p>
   </div>
 </template>
 
 <script>
-import {messsageService} from '@/_services/message.service.js'
+import { beersService } from '@/_services/beers.service.js'
+import { map, startWith, scan, debounceTime } from 'rxjs/operators'
+import { Observable, Subject } from 'rxjs'
 
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String,
+  subscriptions() {
+    this.count$ = new Subject()
+    return {
+      count: this.count$.pipe(
+        debounceTime(500),
+        map(() => 1),
+        startWith(0),
+        scan((total, change) => total + change)
+      ),
+    }
   },
-  
 }
 </script>
 

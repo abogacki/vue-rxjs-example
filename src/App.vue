@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" />
     <HelloWorld msg="Welcome to Your Vue.js App" />
-    {{messages}}
+    <p class="message" v-for="(message, index) in messages" :key="index">{{ message.text }}</p>
     <MessagesButtons />
   </div>
 </template>
@@ -44,5 +44,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.message {
+  background: lightcoral;
 }
 </style>
