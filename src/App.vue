@@ -1,51 +1,55 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-    <p class="message" v-for="(message, index) in messages" :key="index">{{ message.text }}</p>
-    <MessagesButtons />
+    <navbar />
+      <body-hero />
   </div>
 </template>
 
 <script>
-import HelloWorld from '@/components/HelloWorld.vue'
 import MessagesButtons from '@/components/MessagesButtons'
-import { messageService } from '@/_services/message.service'
+import NavBarVue from '@/components/NavBar.vue';
+import BodyVue from '@/components/Body.vue';
 
 export default {
   name: 'app',
-  data() {
-    return { messages: [] }
-  },
-  created() {
-    this.subscription = messageService.getMessages().subscribe(message => {
-      if (message) {
-        this.messages.push(message)
-      } else {
-        this.messages = []
-      }
-    })
-  },
-  beforeDestroy() {
-    this.subscription.unsubscribe()
-  },
   components: {
-    HelloWorld,
-    MessagesButtons,
+    'navbar': NavBarVue,
+    'body-hero': BodyVue
   },
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-.message {
-  background: lightcoral;
-}
+<style lang='scss'>
+// Import Bulma's core
+@import "~bulma/sass/utilities/_all";
+
+// Set your colors
+$primary: #432AD3;
+$primary-invert: findColorInvert($primary);
+$secondary: #F4D70D;
+$secondary-invert: findColorInvert($secondary);
+$tetriary: #044389;
+$tetriary-invert: findColorInvert($tetriary);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": ($white, $black),
+    "black": ($black, $white),
+    "light": ($light, $light-invert),
+    "dark": ($dark, $dark-invert),
+    "primary": ($primary, $primary-invert),
+    "info": ($info, $info-invert),
+    "success": ($success, $success-invert),
+    "warning": ($warning, $warning-invert),
+    "danger": ($danger, $danger-invert),
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 </style>

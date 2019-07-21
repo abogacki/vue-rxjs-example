@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button @click="sendMessage()">send message</button>
-    <button @click="clearMessages()">clear messages</button>
+    <b-button @click="sendMessage()">send message</b-button>
+    <b-button @click="clearMessages()">clear messages</b-button>
   </div>
 </template>
 
