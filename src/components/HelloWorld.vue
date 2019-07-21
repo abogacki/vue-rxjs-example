@@ -64,7 +64,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
 .card {
-  border-radius: 12px;
+  border-radius: 7px;
   display: block;
   transition: 0.3s box-shadow cubic-bezier(0.23, 1, 0.32, 1);
   box-shadow: 0 2px 4px rgba(10, 10, 10, 0.1);
